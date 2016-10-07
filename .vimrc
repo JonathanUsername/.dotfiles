@@ -5,8 +5,8 @@ filetype plugin indent on
 set number
 set paste
 
-" Lets you use the cursor to select, but not to move :(
-set mouse=
+" Lets you use the cursor like a boss 
+set mouse=a
 
 " 4 spaces instead of tabs :(
 set tabstop=4
