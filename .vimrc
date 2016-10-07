@@ -4,6 +4,7 @@ syntax on
 filetype plugin indent on
 set number
 set paste
+set autoread
 
 " Lets you use the cursor like a boss 
 set mouse=a
@@ -45,6 +46,9 @@ nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
 colors zenburn
+
+" and for airline...
+let g:airline_theme='zenburn'
 
 " For dark colours
 " colorscheme solarized

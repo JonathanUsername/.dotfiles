@@ -1,1 +1,2 @@
-disable=C0111
+[TYPECHECK]
+disable=C0111, wrong-import-order, line-too-long, protected-access, invalid-name, redefined-builtin
