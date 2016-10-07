@@ -42,7 +42,7 @@
 "                         parameters
 "  - Clayton Parker (claytron) - Convinced by Kurt Maier to use Zenburn. Point
 "    out issues with LineNr, fix directory styles, and their usage in MacVim.
-"  - Paweł Piekarski - Spotted bad FoldColumn and TabLine. Made better 
+"  - Paweł Piekarski - Spotted bad FoldColumn and TabLine. Made better
 "                      FoldColumn colors, fixed TabLine colors.
 "  - Jim - Fix for missing Include group for terminal
 "  - Peter (Sakartu) - ColorColumn fixes
@@ -113,7 +113,7 @@
 "
 " * New (dark) Visual coloring has been introduced.
 "   The dark Visual is more aligned with the rest of the colour scheme,
-"   especially if you use line numbers. If you wish to use the 
+"   especially if you use line numbers. If you wish to use the
 "   old Visual coloring, use
 "
 "      let g:zenburn_old_Visual = 1
@@ -137,7 +137,7 @@
 " * To turn the parameter(s) back to defaults, use UNLET or set them to 0:
 "
 "      unlet g:zenburn_alternate_Include
-"   or 
+"   or
 "      let g:zenburn_alternate_Include = 0
 "
 "
@@ -307,7 +307,7 @@ else
     hi FoldColumn    guibg=#333333                         ctermbg=236 ctermfg=109
     hi Folded        guibg=#333333                         ctermbg=236 ctermfg=109
     hi LineNr        guifg=#9fafaf guibg=#262626           ctermfg=248 ctermbg=239
-    hi NonText       guifg=#5b605e gui=bold                ctermfg=240
+    hi NonText       guifg=#5b605e gui=bold                ctermfg=188
     hi Pmenu         guibg=#2c2e2e guifg=#9f9f9f           ctermfg=248 ctermbg=235
     hi PmenuSel      guibg=#242424 guifg=#d0d0a0 gui=bold  ctermfg=187 ctermbg=235 cterm=bold
     hi MatchParen    guifg=#b2b2a0 guibg=#2e2e2e gui=bold  ctermfg=145 ctermbg=236 cterm=bold
@@ -464,4 +464,3 @@ if exists("g:zenburn_enable_TagHighlight") && g:zenburn_enable_TagHighlight
 endif
 
 " TODO check for more obscure syntax groups that they're ok
-

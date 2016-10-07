@@ -5,13 +5,16 @@ filetype plugin indent on
 set number
 set paste
 set autoread
+set clipboard=unnamed
 
 " Lets you use the cursor like a boss 
 set mouse=a
 
 " 4 spaces instead of tabs :(
-set softtabstop=4
+set tabstop=8
+set softtabstop=0
 set expandtab
+set smarttab
 set shiftwidth=4
 set autoindent
 set smartindent
@@ -103,3 +106,4 @@ let g:syntastic_style_warning_symbol = '💩'
 " highlight link SyntasticWarningSign SignColumn
 " highlight link SyntasticStyleErrorSign SignColumn
 " highlight link SyntasticStyleWarningSign SignColumn
+
