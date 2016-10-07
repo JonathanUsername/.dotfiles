@@ -9,11 +9,39 @@ set paste
 set mouse=a
 
 " 4 spaces instead of tabs :(
-set tabstop=4
+set softtabstop=4
 set expandtab
+set shiftwidth=4
+set autoindent
+set smartindent
 
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
+
+" FUGITIVE / GIT
+" Write COMMIT_EDITMSG and push to current branch
+function! PushToCurrentBranch()
+  exe ":Gwrite"
+  let branch = fugitive#statusline()
+  let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
+  exe ":Git push origin" . branch
+endfunction
+
+command! Gp :call PushToCurrentBranch()
+
+command! -nargs=1 Lg !git add --all; git commit -m <args>
+
+" avoid backup files in working directory
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
+
+" persistent undo between sessions
+set undofile
+set undodir=~/.vim/tmp
+
+
+" open file in nerdtree
+nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
 colors zenburn
@@ -32,6 +60,20 @@ let g:ctrlp_max_files=20000
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
+" TABS
+" Navigate through tabs by number
+noremap <Leader>1 1gt
+noremap <Leader>2 2gt
+noremap <Leader>3 3gt
+noremap <Leader>4 4gt
+noremap <Leader>5 5gt
+noremap <Leader>6 6gt
+noremap <Leader>7 7gt
+noremap <Leader>8 8gt
+noremap <Leader>9 9gt
+noremap <Leader>0 :tablast<cr>"
+noremap <Leader>T :tabnew<cr>"
+
 " SYNTASTIC
 
 set statusline+=%#warningmsg#
@@ -46,11 +88,12 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_check_on_w = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
+let g:syntastic_python_checkers = ['pylint']
 
-" let g:syntastic_error_symbol = '❌'
-" let g:syntastic_style_error_symbol = '⁉️'
-" let g:syntastic_warning_symbol = '⚠️'
-" let g:syntastic_style_warning_symbol = '💩'
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
 
 " highlight link SyntasticErrorSign SignColumn
 " highlight link SyntasticWarningSign SignColumn
