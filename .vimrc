@@ -97,11 +97,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
 let g:syntastic_python_checkers = ['pylint']
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-
 " highlight link SyntasticErrorSign SignColumn
 " highlight link SyntasticWarningSign SignColumn
 " highlight link SyntasticStyleErrorSign SignColumn
