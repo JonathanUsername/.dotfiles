@@ -222,3 +222,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export HISTSIZE=20000
 export LC_CTYPE=en_US.UTF-8
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+[ -f /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash ] && . /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash

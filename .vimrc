@@ -43,6 +43,11 @@ command! -bar -bang -nargs=? Stack call stackanswers#StackAnswers(<q-bang>, <q-a
 
 command! Sa :StackAnswers
 
+" Map Cmd+s to save
+:let mapleader = ","
+:map <Leader>s :w<kEnter>
+:map <Leader>q :q<kEnter>
+
 " avoid backup files in working directory
 set backupdir=~/.vim/tmp,.
 set directory=~/.vim/tmp,.
@@ -126,4 +131,6 @@ let g:syntastic_python_checkers = ['pylint']
 " vim-fugitive
 " vim-gitgutter
 " vim-javascript-syntax
+" javascript-libraries-syntax
 
+let g:used_javascript_libs = 'react'
