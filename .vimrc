@@ -1,7 +1,7 @@
 execute pathogen#infect()
 " set background=dark
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf8,prc
+" set fileencoding=utf-8
+" set fileencodings=ucs-bom,utf8,prc
 syntax on
 filetype plugin indent on
 set number
@@ -43,10 +43,14 @@ command! -bar -bang -nargs=? Stack call stackanswers#StackAnswers(<q-bang>, <q-a
 
 command! Sa :StackAnswers
 
+" Use silver searcher
+let g:ackprg = 'ag --vimgrep'
+
 " Map Cmd+s to save
 :let mapleader = ","
 :map <Leader>s :w<kEnter>
 :map <Leader>q :q<kEnter>
+:map <Leader>t :TernDef<kEnter>
 
 " avoid backup files in working directory
 set backupdir=~/.vim/tmp,.
@@ -134,3 +138,4 @@ let g:syntastic_python_checkers = ['pylint']
 " javascript-libraries-syntax
 
 let g:used_javascript_libs = 'react'
+let g:python_host_prog = '/usr/local/bin/python2'

@@ -79,7 +79,6 @@ export ANDROID_HOME=~/Library/Android/sdk
 export HISTSIZE=5000
 alias inoket='source ../sourceMe.sh && source venv/bin/activate && python application.py runserver'
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
-export EDITOR='/usr/bin/vim'
 ###-begin-npm-completion-###
 #
 # npm command completion script
@@ -226,3 +225,11 @@ export LC_CTYPE=en_US.UTF-8
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
 [ -f /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash ] && . /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash
+
+
+nvim=$(which nvim)
+EDITOR=$nvim
+GIT_EDITOR=$nvim
+alias vim=$nvim
+
+alias mix='source ../venv/bin/activate && python manage.py runserver localhost:8001 --settings=mixcloud.settings.jon'
