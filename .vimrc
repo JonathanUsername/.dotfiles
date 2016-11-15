@@ -13,8 +13,8 @@ set clipboard=unnamed
 set mouse=a
 
 " 4 spaces instead of tabs :(
-set tabstop=4
-set softtabstop=4
+set tabstop=8
+set softtabstop=0
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -50,7 +50,9 @@ let g:ackprg = 'ag --vimgrep'
 :let mapleader = ","
 :map <Leader>s :w<kEnter>
 :map <Leader>q :q<kEnter>
-:map <Leader>t :TernDef<kEnter>
+:map <Leader>td :TernDef<kEnter>
+:map <Leader>tr :TernRefs<kEnter>
+:map <Leader>tt :TernDefTab<kEnter>
 
 " avoid backup files in working directory
 set backupdir=~/.vim/tmp,.
