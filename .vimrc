@@ -64,6 +64,11 @@ set smartindent
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
 
+" Map Cmd+s to save
+:let mapleader = ","
+:map <Leader>s :w<kEnter>
+:map <Leader>q :q<kEnter>
+
 " get ctrlp to remember 250 files
 let g:ctrlp_mruf_max = 250
 
