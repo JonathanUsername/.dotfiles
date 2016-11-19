@@ -1,4 +1,42 @@
-execute pathogen#infect()
+if &compatible
+	set nocompatible
+endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+
+call dein#begin(expand('~/.vim/dein')) " plugins' root path
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {
+    \ 'build': {
+    \     'windows': 'tools\\update-dll-mingw',
+    \     'cygwin': 'make -f make_cygwin.mak',
+    \     'mac': 'make -f make_mac.mak',
+    \     'linux': 'make',
+    \     'unix': 'gmake',
+    \    },
+    \ })
+
+call dein#add('Shougo/unite.vim')
+call dein#add('mileszs/ack.vim')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('scrooloose/syntastic')
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('tpope/vim-commentary')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('jelera/vim-javascript-syntax')
+call dein#add('othree/javascript-libraries-syntax.vim')
+call dein#add('jiangmiao/auto-pairs')
+call dein#add('idanarye/vim-merginal')
+
+" and a lot more plugins.....
+call dein#end()
+
+" :call dein#install()
+
+" execute pathogen#infect()
+
 " set background=dark
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf8,prc
@@ -12,6 +50,8 @@ set clipboard=unnamed
 " Lets you use the cursor like a boss 
 set mouse=a
 
+" let g:ackprg = "ag --vimgrep"
+
 " 4 spaces instead of tabs :(
 set tabstop=4
 set softtabstop=4
@@ -23,6 +63,9 @@ set smartindent
 
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
+
+" get ctrlp to remember 250 files
+let g:ctrlp_mruf_max = 250
 
 " FUGITIVE / GIT
 " Write COMMIT_EDITMSG and push to current branch
@@ -37,8 +80,7 @@ endfunction
 cnoreabbrev W w
 
 command! Gp :call PushToCurrentBranch()
-
-command! -nargs=1 Lg !git add --all; git commit -m <args>
+command! -nargs=1 Lg :exec("! git add --all; git commit -m " . shellescape(<args>, 1))
 command! -bar -bang -nargs=? Stack call stackanswers#StackAnswers(<q-bang>, <q-args>)
 
 command! Sa :StackAnswers
@@ -47,6 +89,7 @@ command! Sa :StackAnswers
 :let mapleader = ","
 :map <Leader>s :w<kEnter>
 :map <Leader>q :q<kEnter>
+:map <Leader>c oconsole.log('here')<ESC>
 
 " avoid backup files in working directory
 set backupdir=~/.vim/tmp,.
