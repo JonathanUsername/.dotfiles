@@ -112,9 +112,10 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_check_on_w = 1
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint', 'flow']
+" let g:syntastic_javascript_flow_exe = 'node_modules/.bin/flow'
 let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
-let g:syntastic_javascript_flow_exe = 'node_modules/.bin/flow'
 let g:syntastic_python_checkers = ['pylint']
 
 " highlight link SyntasticErrorSign SignColumn

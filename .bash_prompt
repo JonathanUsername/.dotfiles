@@ -48,6 +48,7 @@ prompt_git() {
     s+='$';
     fi;
 
+
   fi;
 
   # Get the short symbolic ref.
@@ -56,6 +57,8 @@ prompt_git() {
   branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
     git rev-parse --short HEAD 2> /dev/null || \
     echo '(unknown)')";
+
+  s+="$(git rev-list  --count origin/$branchName...$branchName 2>/dev/null)"
 
   [ -n "${s}" ] && s=" [${s}]";
 
