@@ -20,6 +20,7 @@ set smarttab
 set shiftwidth=4
 set autoindent
 set smartindent
+:set virtualedit=onemore 
 
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
