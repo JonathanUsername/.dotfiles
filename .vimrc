@@ -27,6 +27,7 @@ call dein#add('tpope/vim-commentary')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('jelera/vim-javascript-syntax')
 call dein#add('othree/javascript-libraries-syntax.vim')
+call dein#add('pangloss/vim-javascript')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('idanarye/vim-merginal')
 
@@ -47,6 +48,9 @@ set paste
 set autoread
 set clipboard=unnamed
 
+" Allow clicking to end of line
+:set virtualedit=onemore 
+
 " Lets you use the cursor like a boss 
 set mouse=a
 
@@ -63,11 +67,6 @@ set smartindent
 
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
-
-" Map Cmd+s to save
-:let mapleader = ","
-:map <Leader>s :w<kEnter>
-:map <Leader>q :q<kEnter>
 
 " get ctrlp to remember 250 files
 let g:ctrlp_mruf_max = 250
