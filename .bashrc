@@ -5,9 +5,17 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+. /usr/local/etc/bash_completion
+
 if [ -f /usr/local/etc/bash_completion.d/hg-completion.bash ]; then
   . /usr/local/etc/bash_completion.d/hg-completion.bash
 fi
+
+if [ -f /usr/local/etc/bash_completion.d/yarn ]; then
+  . /usr/local/etc/bash_completion.d/yarn
+fi
+
 # NVM
 export NVM_DIR="/Users/jonathan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -257,3 +265,11 @@ alias pushback="git push origin HEAD"
 alias flow-type-debug="~/src/github.com/JonathanUsername/flow-type-debug/flow-type-debug.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+export MIXCLOUD_SETTINGS_REACT="mixcloud.settings.jon_react"
+export MIXCLOUD_SETTINGS_WWW="mixcloud.settings.jon"
+export MIXCLOUD_SETTINGS_API="mixcloud.settings.jon"
+export MIXCLOUD_SETTINGS_MOBILE="mixcloud.settings.jon_mobile"
+alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/activate"
+export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/node_modules/.bin
