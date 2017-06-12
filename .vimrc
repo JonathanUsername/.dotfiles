@@ -73,15 +73,12 @@ set shiftwidth=4
 set autoindent
 set smartindent
 
-" no max length bar
-set colorcolumn=0
-
-
 " for fancy arrows etc
 let g:airline_powerline_fonts = 1
 
-" no folding in python
+" Turn of annoyances for py-mode
 let g:pymode_folding = 0
+let g:pymode_options_colorcolumn = 0
 
 " use // to search for selected text
 vnoremap // y/<C-R>"<CR>"
@@ -165,10 +162,17 @@ set undofile
 set undodir=~/.vim/tmp
 
 " For light, low contrast theme:
-colors zenburn
-
-" and for airline...
-let g:airline_theme='zenburn'
+:let zenburn_on=0
+if zenburn_on
+    colors zenburn
+    let g:airline_theme='zenburn'
+else
+    set background=dark
+    colorscheme solarized
+    " :AirlineTheme solarized
+    let g:airline_solarized_bg='dark'
+    let g:airline_theme='understated'
+endif
 
 " For dark colours
 " colorscheme solarized
@@ -213,3 +217,6 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 let g:used_javascript_libs = 'react'
 set rtp+=/usr/local/opt/fzf
+
+" no max length bar
+:set colorcolumn=0
