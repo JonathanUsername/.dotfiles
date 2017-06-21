@@ -15,6 +15,9 @@ hg_ps1() {
 
 export PROMPT_DIRTRIM=3
 
+# let's make a custom venv prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 prompt_git() {
   local s='';
   local branchName='';
@@ -121,9 +124,23 @@ else
   hostStyle="${yellow}";
 fi;
 
+
+venvStyle="${purple}"
+
+get_venv() {
+  [[ -n "$VIRTUAL_ENV" ]] && echo -e '(venv)'
+}
+
+right_prompt() {
+  # Putting style before column no. because invisible characters 
+  # mess it up and I'm too lazy to work out a better solution for now
+  printf "%s%*s%s\r" "${venvStyle}" "$(tput cols)" "$(get_venv)"
+}
+
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
 PS1+="\[${bold}\]\n"; # newline
+PS1+="\$(right_prompt)"; # venv etc
 PS1+="\[${userStyle}\]\u"; # username
 # PS1+="\[${white}\] at ";
 # PS1+="\[${hostStyle}\]\h"; # host
