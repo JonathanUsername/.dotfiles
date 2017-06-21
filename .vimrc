@@ -1,7 +1,17 @@
 if &compatible
 	set nocompatible
 endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+
+let onremote=$SSH_TTY
+if onremote == ''
+	set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+	set runtimepath+=~/testingstuffwoo
+	" clear search highlighting with esc
+	nnoremap <esc> :noh<return><esc>
+else
+	set runtimepath+=$SSHHOME/.sshrc.d/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+	set runtimepath+=$SSHHOME/.sshrc.d/.vim
+endif
 
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
 call dein#add('Shougo/dein.vim')
@@ -24,15 +34,21 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('tpope/vim-commentary')
+call dein#add('flowtype/vim-flow')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('jelera/vim-javascript-syntax')
 call dein#add('othree/javascript-libraries-syntax.vim')
 call dein#add('pangloss/vim-javascript')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('idanarye/vim-merginal')
+call dein#add('rust-lang/rust.vim')
 
 " and a lot more plugins.....
 call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
 
 " :call dein#install()
 
@@ -47,11 +63,14 @@ set number
 set paste
 set autoread
 set clipboard=unnamed
+:set virtualedit=onemore
 
 " Allow clicking to end of line
 :set virtualedit=onemore 
+" use // to search for selected text
+vnoremap // y/<C-R>"<CR>"
 
-" Lets you use the cursor like a boss 
+ " Lets you use the cursor
 set mouse=a
 
 " let g:ackprg = "ag --vimgrep"
@@ -67,6 +86,32 @@ set smartindent
 
 " clear search highlighting with esc
 nnoremap <esc> :noh<return><esc>
+" Map Cmd+s to save
+:let mapleader = ","
+:map <Leader>s :w<kEnter>
+:map <Leader>q :q<kEnter>
+:map <Leader>v :tabedit ~/.vimrc<kEnter>
+:map <Leader>d :NERDTree ~/src/github.com/JonathanUsername/dotfiles<kEnter>
+
+" remap d to not copy
+" http://stackoverflow.com/questions/3638542/any-way-to-delete-in-vim-without-overwriting-your-last-yank
+nnoremap d "xd
+vnoremap d "xd
+
+" set cursor to bar when in insert mode
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+elseif empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
+
+let NERDTreeShowHidden=1
 
 " get ctrlp to remember 250 files
 let g:ctrlp_mruf_max = 250
@@ -150,18 +195,19 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
 let g:syntastic_check_on_w = 1
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
 let g:syntastic_javascript_flow_exe = 'node_modules/.bin/flow'
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_rust_checkers = ['rustc']
 
-" highlight link SyntasticErrorSign SignColumn
-" highlight link SyntasticWarningSign SignColumn
-" highlight link SyntasticStyleErrorSign SignColumn
-" highlight link SyntasticStyleWarningSign SignColumn
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
 
 " PLUGIN LIST:
@@ -181,3 +227,4 @@ let g:syntastic_python_checkers = ['pylint']
 " javascript-libraries-syntax
 
 let g:used_javascript_libs = 'react'
+set rtp+=/usr/local/opt/fzf

@@ -20,14 +20,13 @@ export DYLD_LIBRARY_PATH=/opt/oracle/instantclient:$DYLD_LIBRARY_PATH
 export OCI_LIB_DIR=/opt/oracle/instantclient
 export OCI_INC_DIR=/opt/oracle/instantclient/sdk/include
 export OCI_INCLUDE_DIR=/opt/oracle/instantclient/sdk/include
-alias lazygit="git add --all; git commit -m $1"
+alias lazygit="git add --all; git commit -S -m $1"
 alias npminstallall='while true; do '$1' 2>&1 > /dev/null | grep Error: | sed "s/^.*Cannot find module '\(.*\)'$/\1/" | xargs npm install; sleep 2; done'
 alias latestbranches="git for-each-ref --sort=-committerdate refs/heads/"
 alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commit//g' | xargs git diff"
 alias eberror="eb logs | tail +0 | egrep -ia error"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
 source ~/.git-completion.bash
-export AWS_CREDENTIAL_FILE=~/.elasticbeanstalk/az_aws_credential_file
 export GOPATH=$HOME
 # eval "$(rbenv init -)"
 export PATH=$PATH:$GOPATH/bin
@@ -223,8 +222,41 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export HISTSIZE=20000
 export LC_CTYPE=en_US.UTF-8
 
-# tabtab source for yarn package
-# uninstall by removing these lines or running `tabtab uninstall yarn`
-[ -f /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash ] && . /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash
 
 GIT_EDITOR=$(which nvim)
+
+# hopefully helps with syntastic
+export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin
+
+
+# DELETE ME
+source /usr/local/etc/bash_completion.d/notes
+
+# tabtab source for yarn package
+# uninstall by removing these lines or running `tabtab uninstall yarn`
+[ -f /Users/jonathan/.config/yarn/global/node_modules/tabtab/.completions/yarn.bash ] && . /Users/jonathan/.config/yarn/global/node_modules/tabtab/.completions/yarn.bash
+
+# git recent branches
+alias gr="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) __SEP %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' | sed 's/:/__COLON/'g | sed 's/__SEP/:/' | column -ts ':' | sed 's/__COLON/:/g'"
+alias gc="git-select"
+export GPG_TTY=$(tty)
+
+# Start gpg daemon if not started already
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+    source ~/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
+else
+    eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
+
+alias sonosdown="~/sonosdown.py"
+
+alias pullin="git pull origin $(git rev-parse --abbrev-ref HEAD)"
+alias pushback="git push origin HEAD"
+
+alias flow-type-debug="~/src/github.com/JonathanUsername/flow-type-debug/flow-type-debug.sh"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export MIXCLOUD_SETTINGS_REACT='mixcloud.settings.jon_react'
+export MIXCLOUD_SETTINGS_WWW='mixcloud.settings.jon'
