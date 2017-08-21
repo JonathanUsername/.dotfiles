@@ -9,10 +9,6 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
   export TERM='xterm-256color';
 fi;
 
-hg_ps1() {
-  hg prompt "{${1} on ${2}{branch}}{${1} at ${3}{bookmark}}{status}" 2> /dev/null
-}
-
 export PROMPT_DIRTRIM=3
 
 # let's make a custom venv prompt
@@ -132,7 +128,7 @@ get_venv() {
 }
 
 right_prompt() {
-  # Putting style before column no. because invisible characters 
+  # Putting style before column no. because invisible characters
   # mess it up and I'm too lazy to work out a better solution for now
   printf "%s%*s%s\r" "${venvStyle}" "$(tput cols)" "$(get_venv)"
 }
@@ -161,7 +157,7 @@ trim_dirs() {
 PS1+="\[${white}\] in ";
 PS1+="\[${green}\]";
 PS1+="\$(trim_dirs)"; # working directory
-PS1+="\$(prompt_git \"\[${white}\] on \[${blue}\]\" \"\[${purple}\]\")\$(hg_ps1 \"\[${white}\]\" \"\[${purple}\]\" \"\[${purple}\]\")"; # Git repository details
+PS1+="\$(prompt_git \"\[${white}\] on \[${blue}\]\" \"\[${purple}\]\")"; # Git repository details
 PS1+="\n";
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
