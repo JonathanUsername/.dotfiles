@@ -29,10 +29,8 @@ export OCI_LIB_DIR=/opt/oracle/instantclient
 export OCI_INC_DIR=/opt/oracle/instantclient/sdk/include
 export OCI_INCLUDE_DIR=/opt/oracle/instantclient/sdk/include
 alias lazygit="git add --all; git commit -S -m $1"
-alias npminstallall='while true; do '$1' 2>&1 > /dev/null | grep Error: | sed "s/^.*Cannot find module '\(.*\)'$/\1/" | xargs npm install; sleep 2; done'
 alias latestbranches="git for-each-ref --sort=-committerdate refs/heads/"
 alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commit//g' | xargs git diff"
-alias eberror="eb logs | tail +0 | egrep -ia error"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
 source ~/.git-completion.bash
 export GOPATH=$HOME
@@ -40,13 +38,13 @@ export GOPATH=$HOME
 export PATH=$PATH:$GOPATH/bin
 export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$HOME/terraform:/usr/local/terraform/bin
-sshtun () {
-  if [[ -z "$1" || -z "$2" || -z "$3" || -z "$4" || -z "$5" ]]; then
-    echo "Usage: $0 local_port identity_file gateway_host target_host target_port"
-  else
-    ssh -o IdentitiesOnly=yes -o "UserKnownHostsFile /dev/null" -F /dev/null -i $2 -Nf -L $1:$4:$5 $3
-  fi
-}
+# sshtun () {
+#   if [[ -z "$1" || -z "$2" || -z "$3" || -z "$4" || -z "$5" ]]; then
+#     echo "Usage: $0 local_port identity_file gateway_host target_host target_port"
+#   else
+#     ssh -o IdentitiesOnly=yes -o "UserKnownHostsFile /dev/null" -F /dev/null -i $2 -Nf -L $1:$4:$5 $3
+#   fi
+# }
 aws_set_env () {
   aws configure --profile "$1"
   export AWS_DEFAULT_PROFILE="$1"
@@ -84,7 +82,6 @@ complete -F _complete_ssh_hosts ssh
 export PATH="$HOME/.cargo/bin:$PATH"
 export ANDROID_HOME=~/Library/Android/sdk
 export HISTSIZE=5000
-alias inoket='source ../sourceMe.sh && source venv/bin/activate && python application.py runserver'
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 export EDITOR=$(which nvim)
 ###-begin-npm-completion-###
@@ -217,9 +214,6 @@ else
 fi
 complete -F _python_django_completion -o default $pythons
 unset pythons
-# make ctrl+w/cmd+w stop on slashes etc.
-stty werase undef
-bind '\C-w:unix-filename-rubout'
 
 
 
@@ -274,4 +268,20 @@ export MIXCLOUD_SETTINGS_MOBILE="mixcloud.settings.jon_mobile"
 alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/activate"
 export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/node_modules/.bin
 
+setProfile() {
+    local NAME="$1";
+    echo -e "\033]50;SetProfile=$NAME\a"
+}
 
+sshAlias() {
+    ssh $@;
+    ~/setMixcloudSSH.sh off
+}
+
+alias ssh=sshAlias
+
+# make ctrl+w/cmd+w stop on slashes etc.
+stty werase undef
+bind '\C-w:unix-filename-rubout'
+
+. /Users/jonathan/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
