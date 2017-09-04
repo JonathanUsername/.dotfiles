@@ -120,9 +120,9 @@ noremap <Leader>T :tabnew<cr>"
 
 " remap d to not copy
 " http://stackoverflow.com/questions/3638542/any-way-to-delete-in-vim-without-overwriting-your-last-yank
-nnoremap d "xd
-vnoremap d "xd
-xnoremap p "_dP
+" nnoremap d "xd
+" vnoremap d "xd
+" xnoremap p "_dP
 
 " set cursor to bar when in insert mode
 if has('nvim')

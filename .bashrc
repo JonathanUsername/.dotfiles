@@ -1,3 +1,8 @@
+# err_report() {
+#     echo "Error on line $(caller)"
+# }
+
+# trap 'err_report $LINENO' ERR
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -32,7 +37,7 @@ alias lazygit="git add --all; git commit -S -m $1"
 alias latestbranches="git for-each-ref --sort=-committerdate refs/heads/"
 alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commit//g' | xargs git diff"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
-source ~/.git-completion.bash
+[ -d ~/.git-completion.bash ] && source ~/.git-completion.bash
 export GOPATH=$HOME
 # eval "$(rbenv init -)"
 export PATH=$PATH:$GOPATH/bin
@@ -141,7 +146,7 @@ fi
 ###-end-npm-completion-###
 export NODE_ENV='development'
 export PATH=$PATH:/usr/local/m-cli
-source ~/src/github.com/dickeyxxx/gh/bash/gh.bash
+[ -e ~/src/github.com/dickeyxxx/gh/bash/gh.bash ] && source ~/src/github.com/dickeyxxx/gh/bash/gh.bash
 _complete_gh ()
 {
         COMPREPLY=()
@@ -232,7 +237,7 @@ export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/js/no
 
 
 # DELETE ME
-source /usr/local/etc/bash_completion.d/notes
+[ -e /usr/local/etc/bash_completion.d/notes ] && source /usr/local/etc/bash_completion.d/notes
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
@@ -253,7 +258,7 @@ fi
 
 alias sonosdown="~/sonosdown.py"
 
-alias pullin="git pull origin $(git rev-parse --abbrev-ref HEAD)"
+alias pullin='git pull origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias pushback="git push origin HEAD"
 
 alias flow-type-debug="~/src/github.com/JonathanUsername/flow-type-debug/flow-type-debug.sh"
