@@ -25,10 +25,14 @@ call dein#add('Shougo/vimproc.vim', {
     \    },
     \ })
 
+call dein#add('racer-rust/vim-racer')
+call dein#add('junegunn/fzf.vim')
+call dein#add('rust-lang/rust.vim')
 call dein#add('Shougo/unite.vim')
-call dein#add('mileszs/ack.vim')
-call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('rking/ag.vim')
+" call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
+call dein#add('terryma/vim-multiple-cursors')
 call dein#add('vim-syntastic/syntastic')
 call dein#add('tpope/vim-fugitive')
 call dein#add('vim-airline/vim-airline')
@@ -36,9 +40,10 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('tpope/vim-commentary')
 " call dein#add('ternjs/tern_for_vim')
 call dein#add('airblade/vim-gitgutter')
-" call dein#add('flowtype/vim-flow')
-call dein#add('python-mode/python-mode')
+call dein#add('flowtype/vim-flow')
+" call dein#add('python-mode/python-mode')
 call dein#add('jelera/vim-javascript-syntax')
+call dein#add('pangloss/vim-javascript')
 call dein#add('othree/javascript-libraries-syntax.vim')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('idanarye/vim-merginal')
@@ -96,6 +101,7 @@ let g:ackprg = "ag --vimgrep"
 :map <Leader>b :e#<kEnter>
 :map <Leader>v :tabedit ~/.vimrc<kEnter>
 :map <Leader>d :FlowJumpToDef<kEnter>
+:map <Leader>t :MerlinTypeOf<kEnter>
 :map <Leader>r :Ack <cword> --ignore-file=is:www.js<kEnter>
 " open file in nerdtree
 nmap <Leader>n :NERDTreeFind<CR>
@@ -134,6 +140,10 @@ else
 endif
 
 let NERDTreeShowHidden=1
+
+" Using fzf instead of ctrl-p
+nnoremap <c-p> :Files<CR>
+
 
 " get ctrlp to remember 250 files
 let g:ctrlp_mruf_max = 250
@@ -193,6 +203,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:flow#autoclose = 1
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 0
@@ -205,6 +217,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 " specific to opening in mixcloud/website!!
 let g:syntastic_javascript_eslint_exe = 'js/node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
 let g:syntastic_javascript_flow_exe = 'js/node_modules/.bin/flow'
+let g:javascript_plugin_flow = 1
 let g:syntastic_python_checkers = ['pylint']
 
 let g:syntastic_sh_checkers = ['shellcheck', 'sh']
@@ -220,3 +233,52 @@ set rtp+=/usr/local/opt/fzf
 
 " no max length bar
 :set colorcolumn=0
+" ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam config var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+
+let s:opam_configuration = {}
+
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+endfunction
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_check_cmdline = ["opam list --installed --short --safe --color=never"] + s:opam_packages
+let s:opam_available_tools = split(system(join(s:opam_check_cmdline)))
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if count(s:opam_available_tools, tool) > 0
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line:
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+let g:syntastic_ocaml_checkers = ['merlin']
+
+fun! OCaml_additional()
+    " For the plugin 'tpope/vim-commentary':
+    set commentstring=(*\ %s\ *)
+    map  <buffer> <localleader>bmw obegin match  with<cr>end<esc>k2==0EEl
+    nmap <buffer> <localleader>om o>>= fun  -><esc>==0t-
+    nmap <buffer> <localleader>ou o>>= fun () -><esc>==
+    nmap <buffer> <localleader>ad a(** *)<esc>hh
+    nmap <buffer> <localleader>op o\|  -><esc>==^l
+    set cc=81 " display 81st column
+    " It's a merlin thing, but who cares:
+    nmap <buffer> <localleader>l :Locate<cr>
+endfun
+autocmd FileType ocaml call OCaml_additional()

@@ -39,7 +39,7 @@ alias latestbranches="git for-each-ref --sort=-committerdate refs/heads/"
 alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commit//g' | xargs git diff"
 alias eberror="eb logs | tail +0 | egrep -ia error"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
-[ -d ~/.git-completion.bash ] && source ~/.git-completion.bash
+source ~/.git-completion.bash
 export GOPATH=$HOME
 # eval "$(rbenv init -)"
 export PATH=$PATH:$GOPATH/bin
@@ -278,4 +278,8 @@ export MIXCLOUD_SETTINGS_API="mixcloud.settings.jon"
 export MIXCLOUD_SETTINGS_MOBILE="mixcloud.settings.jon_mobile"
 alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/activate"
 export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/node_modules/.bin
+eval `opam config env`
 
+export FLOW_WHITELIST='node_modules++playerWidget'
+export PATH=$(brew --prefix openvpn)/sbin:$PATH
+export PATH=$(brew --prefix mtr)/sbin:$PATH
