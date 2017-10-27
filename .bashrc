@@ -33,11 +33,11 @@ export DYLD_LIBRARY_PATH=/opt/oracle/instantclient:$DYLD_LIBRARY_PATH
 export OCI_LIB_DIR=/opt/oracle/instantclient
 export OCI_INC_DIR=/opt/oracle/instantclient/sdk/include
 export OCI_INCLUDE_DIR=/opt/oracle/instantclient/sdk/include
-alias lazygit="git add --all; git commit -S -m $1"
+alias lazygit="git add --all; git commit -m $1"
 alias latestbranches="git for-each-ref --sort=-committerdate refs/heads/"
 alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commit//g' | xargs git diff"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
-[ -d ~/.git-completion.bash ] && source ~/.git-completion.bash
+source ~/.git-completion.bash
 export GOPATH=$HOME
 # eval "$(rbenv init -)"
 export PATH=$PATH:$GOPATH/bin
@@ -290,3 +290,13 @@ stty werase undef
 bind '\C-w:unix-filename-rubout'
 
 . /Users/jonathan/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+
+# Use version of python installed with brew 
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+
+export FLOW_WHITELIST='node_modules++playerWidget'
+
+alias sonos="PYTHONSTARTUP=~/sonos_python_imports.py ipython"
+

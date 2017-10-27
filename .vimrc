@@ -34,14 +34,15 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('tpope/vim-commentary')
-" call dein#add('ternjs/tern_for_vim')
+call dein#add('ternjs/tern_for_vim')
 call dein#add('airblade/vim-gitgutter')
-" call dein#add('flowtype/vim-flow')
-call dein#add('python-mode/python-mode')
+call dein#add('flowtype/vim-flow')
+" call dein#add('python-mode/python-mode')
 call dein#add('jelera/vim-javascript-syntax')
 call dein#add('othree/javascript-libraries-syntax.vim')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('idanarye/vim-merginal')
+call dein#add('terryma/vim-multiple-cursors')
 
 " and a lot more plugins.....
 call dein#end()
@@ -91,6 +92,10 @@ vnoremap // y/<C-R>"<CR>"
 set mouse=a
 
 let g:ackprg = "ag --vimgrep"
+
+" Multiple cursors mapping
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-x>'
 
 " Map Cmd+s to save
 :let mapleader = ","

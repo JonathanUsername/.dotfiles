@@ -10,6 +10,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>N0tch2k</key>
@@ -494,13 +496,13 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>2283 956 400 129 1440 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>3528 768 620 392 2560 0 2560 1417 </string>
+	<string>970 768 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>2789 658 606 469 2560 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>2723 402 796 473 2560 0 2560 1417 </string>
+	<string>2723 428 796 473 2560 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4230 36 857 1357 2560 0 2560 1417 </string>
+	<string>2584 27 2507 1366 2560 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>2560 994 570 398 2560 0 2560 1417 </string>
 	<key>New Bookmarks</key>
@@ -3780,27 +3782,27 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-09-04T11:11:15Z</date>
+	<date>2017-10-17T05:41:53Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
-	<key>SUSkippedVersion</key>
-	<string>3.0.15</string>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>TerminalMargin</key>
 	<integer>25</integer>
 	<key>TerminalVMargin</key>
-	<integer>15</integer>
+	<integer>20</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.8</string>
+	<string>3.1.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
