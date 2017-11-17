@@ -274,7 +274,6 @@ alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/acti
 export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/node_modules/.bin
 eval `opam config env`
 
-<<<<<<< HEAD
 setProfile() {
     local NAME="$1";
     echo -e "\033]50;SetProfile=$NAME\a"
@@ -291,7 +290,7 @@ alias ssh=sshAlias
 stty werase undef
 bind '\C-w:unix-filename-rubout'
 
-. /Users/jonathan/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+source /Users/jonathan/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 
 
 # Use version of python installed with brew 
@@ -302,3 +301,4 @@ alias sonos="PYTHONSTARTUP=~/sonos_python_imports.py ipython"
 export FLOW_WHITELIST='node_modules++playerWidget'
 export PATH=$(brew --prefix openvpn)/sbin:$PATH
 export PATH=$(brew --prefix mtr)/sbin:$PATH
+source ~/.spotify_secrets

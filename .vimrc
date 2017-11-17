@@ -181,7 +181,7 @@ set undofile
 set undodir=~/.vim/tmp
 
 " For light, low contrast theme:
-:let zenburn_on=0
+:let zenburn_on=1
 if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
