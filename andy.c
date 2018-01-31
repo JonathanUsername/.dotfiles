@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-// MAKE: gcc -o /usr/local/bin/funkeh ~/andy.c -lm && /usr/local/bin/funkeh
+// MAKE: gcc -o /usr/local/bin/funkeh ./andy.c -lm && /usr/local/bin/funkeh
 
 void rand_str(char *dest, size_t length) {
     char charset[] = "0123456789"
