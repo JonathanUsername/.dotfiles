@@ -38,11 +38,13 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-rsi')
 " call dein#add('ternjs/tern_for_vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('flowtype/vim-flow')
 call dein#add('jparise/vim-graphql')
 " call dein#add('python-mode/python-mode')
+call dein#add('davidhalter/jedi-vim')
 call dein#add('jelera/vim-javascript-syntax')
 call dein#add('pangloss/vim-javascript')
 call dein#add('othree/javascript-libraries-syntax.vim')
@@ -120,6 +122,8 @@ noremap <Leader>8 8gt
 noremap <Leader>9 9gt
 noremap <Leader>0 :tablast<cr>"
 noremap <Leader>T :tabnew<cr>"
+
+
 
 " remap d to not copy
 " http://stackoverflow.com/questions/3638542/any-way-to-delete-in-vim-without-overwriting-your-last-yank

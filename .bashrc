@@ -11,6 +11,14 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
+new_ps1="$PS1"
+print_ps1() {
+	printf '\033[2J\033[H'
+	printf '%s' "${new_ps1@P}";
+}
+(/usr/local/bin/funkeh & wait; print_ps1)&
+disown
+
 . /usr/local/etc/bash_completion
 
 if [ -f /usr/local/etc/bash_completion.d/hg-completion.bash ]; then
