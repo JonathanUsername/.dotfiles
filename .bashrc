@@ -9,7 +9,7 @@ if [ -f /usr/local/etc/bash_completion.d/hg-completion.bash ]; then
   . /usr/local/etc/bash_completion.d/hg-completion.bash
 fi
 # NVM
-export NVM_DIR="/Users/jonathan/.nvm"
+export NVM_DIR="/home/jonathan/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 # Aliases for launching:
 alias subl="open -a 'Sublime Text' $1"
@@ -136,7 +136,7 @@ fi
 ###-end-npm-completion-###
 export NODE_ENV='development'
 export PATH=$PATH:/usr/local/m-cli
-source ~/src/github.com/dickeyxxx/gh/bash/gh.bash
+source ~/src/github.com/jdxcode/gh/bash/gh.bash
 _complete_gh ()
 {
         COMPREPLY=()
@@ -224,12 +224,14 @@ export LC_CTYPE=en_US.UTF-8
 
 # tabtab source for yarn package
 # uninstall by removing these lines or running `tabtab uninstall yarn`
-[ -f /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash ] && . /Users/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash
+[ -f /home/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash ] && . /home/jonathan/.yarn-cache/.global/node_modules/tabtab/.completions/yarn.bash
 
 
-nvim=$(which nvim)
+#nvim=$(which nvim)
+nvim=vim
 EDITOR=$nvim
 GIT_EDITOR=$nvim
 alias vim=$nvim
 
 alias mix='source ../venv/bin/activate && python manage.py runserver localhost:8001 --settings=mixcloud.settings.jon'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
