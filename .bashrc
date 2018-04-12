@@ -235,3 +235,13 @@ alias vim=$nvim
 
 alias mix='source ../venv/bin/activate && python manage.py runserver localhost:8001 --settings=mixcloud.settings.jon'
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export MIXCLOUD_SETTINGS_REACT="mixcloud.settings.jon_react"
+export MIXCLOUD_SETTINGS_WWW="mixcloud.settings.jon"
+export MIXCLOUD_SETTINGS_API="mixcloud.settings.jon"
+export MIXCLOUD_SETTINGS_MOBILE="mixcloud.settings.jon_mobile"
+
+alias pullin='git pull origin "$(git rev-parse --abbrev-ref HEAD)"'
+alias pushback="git push origin HEAD"
+
+export HISTSIZE=20000
