@@ -245,3 +245,5 @@ alias pullin='git pull origin "$(git rev-parse --abbrev-ref HEAD)"'
 alias pushback="git push origin HEAD"
 
 export HISTSIZE=20000
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

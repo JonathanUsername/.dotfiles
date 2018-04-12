@@ -4,6 +4,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'racer-rust/vim-racer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/unite.vim'
@@ -34,7 +35,6 @@ call plug#end()
 " set fileencodings=ucs-bom,utf8,prc
 syntax on
 filetype plugin indent on
-set number
 set paste
 set autoread
 set clipboard=unnamed
@@ -47,6 +47,7 @@ set tabstop=8
 set softtabstop=0
 set expandtab
 set smarttab
+set nonumber
 set shiftwidth=4
 set autoindent
 set smartindent
@@ -81,6 +82,7 @@ let g:ackprg = 'ag --vimgrep'
 :let mapleader = ","
 :map <Leader>s :w<kEnter>
 :map <Leader>q :q<kEnter>
+:map <Leader>v :e ~/.vimrc<kEnter>
 :map <Leader>td :TernDef<kEnter>
 :map <Leader>tr :TernRefs<kEnter>
 :map <Leader>tt :TernDefTab<kEnter>
@@ -98,10 +100,19 @@ set undodir=~/.vim/tmp
 nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
-colors zenburn
-
-" and for airline...
-let g:airline_theme='zenburn'
+:let zenburn_on=0
+if zenburn_on
+    colors zenburn
+    let g:airline_theme='zenburn'
+else
+    set background=dark
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    colorscheme solarized
+    " :AirlineTheme solarized
+    let g:airline_solarized_bg='dark'
+    let g:airline_theme='understated'
+endif
 
 " For dark colours
 " colorscheme solarized
@@ -155,21 +166,26 @@ let g:syntastic_python_checkers = ['pylint']
 " highlight link SyntasticStyleWarningSign SignColumn
 
 
-" PLUGIN LIST:
-" ack.vim
-" auto-pairs
-" ctrlp
-" nerdtree
-" python-syntax
-" stackanswers.vim
-" syntastic
-" vim-airline
-" vim-colors-solarized
-" vim-commentary
-" vim-fugitive
-" vim-gitgutter
-" vim-javascript-syntax
-" javascript-libraries-syntax
-
 let g:used_javascript_libs = 'react'
 let g:python_host_prog = '/usr/local/bin/python2'
+
+
+let NERDTreeShowHidden=1
+
+" Using fzf instead of ctrl-p
+nnoremap <c-p> :Files<CR>
+
+" get ctrlp to remember 250 files
+let g:ctrlp_mruf_max = 250
+
+" avoid backup files in working directory
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
+
+" Map ctrl n to open filetree
+map <C-n> :NERDTreeToggle<CR>
+
+set rtp+=/usr/local/opt/fzf
+
+" for fancy arrows etc
+let g:airline_powerline_fonts = 1
