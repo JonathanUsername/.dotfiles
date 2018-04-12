@@ -1,0 +1,9 @@
+.termite {
+    padding: 20px;
+}
+
+VteTerminal,
+TerminalScreen {
+    padding: 10px 20px 10px 20px;
+    -VteTerminal-inner-border: 10px 10px 10px 10px;
+}
