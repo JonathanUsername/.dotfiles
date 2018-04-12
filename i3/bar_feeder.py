@@ -3,6 +3,7 @@
 import os
 import sys
 import time
+import subprocess
 from datetime import datetime
 
 output = ""
@@ -17,11 +18,18 @@ class Bar():
 
     def update(self):
         self.output = ""
+        self.add_volume()
         self.add_time()
         self.write_output()
 
+    def run_script(self, name):
+        proc = subprocess.Popen(name, shell=True, stdout=subprocess.PIPE)
+        out = proc.stdout.read()
+        out_str = out.decode("utf-8").strip()
+        return "{}".format(out_str)
+
     def add_volume(self):
-        self.output += os.system('./get_volume.sh')
+        self.output += self.run_script('./get_volume.sh')
 
     def add_time(self):
         time.ctime()
@@ -32,4 +40,4 @@ bar = Bar()
 
 while True:
     bar.update()
-    time.sleep(.5)
+    # time.sleep(.5)
