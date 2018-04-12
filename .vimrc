@@ -1,4 +1,34 @@
-execute pathogen#infect()
+" hopefully fixes arrow keys 
+set nocompatible
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'racer-rust/vim-racer'
+Plug 'junegunn/fzf.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'Shougo/unite.vim'
+Plug 'rking/ag.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+Plug 'ternjs/tern_for_vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'flowtype/vim-flow'
+" Plug 'python-mode/python-mode'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'idanarye/vim-merginal'
+Plug 'terryma/vim-multiple-cursors'
+
+call plug#end()
+
 " set background=dark
 " set fileencoding=utf-8
 " set fileencodings=ucs-bom,utf8,prc
@@ -23,7 +53,7 @@ set smartindent
 :set virtualedit=onemore 
 
 " clear search highlighting with esc
-nnoremap <esc> :noh<return><esc>
+"nnoremap <esc> :noh<return><esc>
 
 " FUGITIVE / GIT
 " Write COMMIT_EDITMSG and push to current branch
