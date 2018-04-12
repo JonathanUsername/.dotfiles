@@ -138,7 +138,7 @@ trim_dirs() {
     ret+="/$(git rev-parse --show-prefix)";
     echo $ret;
   else
-    pwd | python -c 'import sys; d = sys.stdin.read(); print "'$GITREPO'%s" % "/".join(d.split("/")[-3:])'
+    pwd | python -c 'import sys; d = sys.stdin.read(); print("'$GITREPO'{}".format("/".join(d.split("/")[-3:])))'
   fi
 }
 

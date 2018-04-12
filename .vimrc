@@ -30,7 +30,6 @@ Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
-" set background=dark
 " set fileencoding=utf-8
 " set fileencodings=ucs-bom,utf8,prc
 syntax on
@@ -51,7 +50,8 @@ set nonumber
 set shiftwidth=4
 set autoindent
 set smartindent
-:set virtualedit=onemore 
+set virtualedit=onemore 
+set foldcolumn=0
 
 " clear search highlighting with esc
 "nnoremap <esc> :noh<return><esc>
@@ -100,22 +100,26 @@ set undodir=~/.vim/tmp
 nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
-:let zenburn_on=0
+:let zenburn_on=1
 if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
 else
+    set t_Co=256
+    highlight Normal ctermbg=NONE
+    highlight nonText ctermbg=NONE
     set background=dark
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
-    colorscheme solarized
+    colorscheme monokai
     " :AirlineTheme solarized
     let g:airline_solarized_bg='dark'
     let g:airline_theme='understated'
 endif
 
 " For dark colours
-" colorscheme solarized
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 
 " Map ctrl n to open filetree
 map <C-n> :NERDTreeToggle<CR>
@@ -189,3 +193,7 @@ set rtp+=/usr/local/opt/fzf
 
 " for fancy arrows etc
 let g:airline_powerline_fonts = 1
+
+" let g:gitgutter_override_sign_column_highlight = 0
+let g:zenburn_force_dark_Background = 1
+" let g:zenburn_high_Contrast = 1

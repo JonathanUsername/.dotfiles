@@ -247,3 +247,7 @@ alias pushback="git push origin HEAD"
 export HISTSIZE=20000
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="/home/jonathan/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
