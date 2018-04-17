@@ -199,4 +199,10 @@ label =   %temperature-c%
 label-padding = 10
 label-active-font = 3
 
+[module/spotify]
+type = custom/script
+exec = ~/.config/polybar/spotify.sh %artist% - %title%
+tail = true
+interval = 2
+
 ; vim:ft=dosini
