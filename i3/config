@@ -191,3 +191,12 @@ bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
 #     i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.py
 # }
 
+
+# exec --no-startup-id setxkbmap -layout whatever -variant whatever -option caps:escape
+# swap caps lock and escape
+exec_always --no-startup-id xmodmap -e "clear lock"
+exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
+exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+
+# polybar
+exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"

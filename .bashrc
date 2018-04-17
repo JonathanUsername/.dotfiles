@@ -27,7 +27,6 @@ alias difflast="git log | grep -e commit | head -10 | sed -n '2p' | sed 's/commi
 alias eberror="eb logs | tail +0 | egrep -ia error"
 alias differ="echo -ne '\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A############################ start ##################################\x0D\x0A\x0D\x0A\x0D\x0A\x0D\x0A' && git diff --color | diff-so-fancy"
 source ~/.git-completion.bash
-export AWS_CREDENTIAL_FILE=~/.elasticbeanstalk/az_aws_credential_file
 export GOPATH=$HOME
 # eval "$(rbenv init -)"
 export PATH=$PATH:$GOPATH/bin
@@ -136,7 +135,7 @@ fi
 ###-end-npm-completion-###
 export NODE_ENV='development'
 export PATH=$PATH:/usr/local/m-cli
-source ~/src/github.com/jdxcode/gh/bash/gh.bash
+# source ~/src/github.com/jdxcode/gh/bash/gh.bash
 _complete_gh ()
 {
         COMPREPLY=()
@@ -231,7 +230,7 @@ export LC_CTYPE=en_US.UTF-8
 nvim=vim
 EDITOR=$nvim
 GIT_EDITOR=$nvim
-alias vim=$nvim
+alias nvim=$nvim
 
 alias mix='source ../venv/bin/activate && python manage.py runserver localhost:8001 --settings=mixcloud.settings.jon'
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -251,3 +250,7 @@ export HISTSIZE=20000
 export PATH="/home/jonathan/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+# alias ls="ls --color"
+setxkbmap -option caps:escape
+source ~/src/github.com/jdxcode/gh/bash/gh.bash
+source ~/src/github.com/jdxcode/gh/completions/gh.bash

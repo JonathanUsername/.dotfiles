@@ -27,6 +27,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'idanarye/vim-merginal'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
 
@@ -197,3 +198,10 @@ let g:airline_powerline_fonts = 1
 " let g:gitgutter_override_sign_column_highlight = 0
 let g:zenburn_force_dark_Background = 1
 " let g:zenburn_high_Contrast = 1
+
+" Persistent undo
+try 
+    set undodir=~/.vim/undodir
+    set undofile
+catch
+endtry
