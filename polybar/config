@@ -17,8 +17,8 @@ font-1 = MaterialIcons:size=10;0
 font-2 = NotoSans-Regular:size=8:antialias=false;-2
 font-3 = FontAwesome5FreeSolid:size=10;0
 
-modules-left = powermenu mpd 
-modules-right = volume wired-network date memory cpu temperature
+modules-left = mpd spotify
+modules-right = volume wired-network diskspace memory cpu temperature date
 
 [bar/bottom]
 bottom = true
@@ -79,7 +79,7 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date =   %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
 [module/memory]
@@ -137,7 +137,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-label-connected =    %{T3}%local_ip%%{T-}
+label-connected =   %{T3}%local_ip%%{T-}
 label-disconnected-foreground = #66
 
 [module/volume]
@@ -196,13 +196,18 @@ interval = 0.5
 thermal-zone = 0
 warn-temperature = 60
 label =   %temperature-c%
-label-padding = 10
 label-active-font = 3
 
 [module/spotify]
 type = custom/script
-exec = ~/.config/polybar/spotify.sh %artist% - %title%
+exec = ~/.config/polybar/spotify.sh %{T4} %{T-} %artist% - %title%
 tail = true
 interval = 2
+format-padding = 5
 
+[module/diskspace]
+type = custom/script
+exec = ~/.config/polybar/diskspace.sh %{T4}%{T-}
+tail = true
+interval = 2
 ; vim:ft=dosini

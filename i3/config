@@ -165,9 +165,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+# bar {
+#         status_command i3status
+# }
 
 
 # BEGIN CUSTOM
@@ -178,19 +178,13 @@ bindsym Mod4+space exec "rofi -show run"
 
 # Remove title bars on windows
 new_window normal
-hide_edge_borders vertical
-for_window [class="^.*"] border pixel 0
+# hide_edge_borders vertical
+for_window [class="^.*"] border pixel 3
 
 # volume controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q -D pulse set Master toggle
-
-# Lemonbar
-# bar {
-#     i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.py
-# }
-
 
 # exec --no-startup-id setxkbmap -layout whatever -variant whatever -option caps:escape
 # swap caps lock and escape
@@ -200,3 +194,19 @@ exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 # polybar
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
+
+# Workspace layouts
+exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/jonathan/.i3/workspace-1.json'"
+
+focus_follows_mouse no
+
+# Locking
+exec --no-startup-id xset dpms 600
+exec --no-startup-id xautolock -time 10 -locker ~/.config/i3/lock.sh
+
+# Background
+exec --no-startup-id feh --bg-scale https://i.imgur.com/nojr4NW.jpg
+
+# colours?
+set $borderpurple #91429D
+

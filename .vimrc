@@ -28,6 +28,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'idanarye/vim-merginal'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
+Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
 
@@ -37,7 +38,7 @@ syntax on
 filetype plugin indent on
 set paste
 set autoread
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Lets you use the cursor like a boss 
 set mouse=a
@@ -101,7 +102,7 @@ set undodir=~/.vim/tmp
 nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
-:let zenburn_on=1
+:let zenburn_on=0
 if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
@@ -109,13 +110,17 @@ else
     set t_Co=256
     highlight Normal ctermbg=NONE
     highlight nonText ctermbg=NONE
-    set background=dark
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
-    colorscheme monokai
     " :AirlineTheme solarized
-    let g:airline_solarized_bg='dark'
-    let g:airline_theme='understated'
+    " let g:airline_solarized_bg='dark'
+    let g:airline_theme='violet'
+
+    colorscheme space-vim-dark
+    hi Normal     ctermbg=NONE guibg=NONE
+    hi LineNr     ctermbg=NONE guibg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+    set termguicolors
 endif
 
 " For dark colours
