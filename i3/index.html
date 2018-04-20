@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="" style="background-color: #1c1c1c;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>STARTPAGE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <style>
+            @font-face {
+                font-family: Inconsolata;
+                font-weight: bold;
+                src: url("/usr/local/share/fonts/Inconsolata for Powerline.otf") format("opentype");
+            }
+
+            body {
+                font-family: Inconsolata For Powerline;
+                background: #1c1c1c;
+                color: #D358D5;
+                font-weight: 900;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+            }
+
+            input {
+                border-radius: 0px;
+                border: none;
+                padding: 10px;
+                width: 50%;
+                text-align: center;
+            }
+
+            h1 {
+                margin-top: 10px;
+            }
+
+            .content {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+                align-content: center;
+                align-items: stretch;
+                flex-flow: column nowrap;
+            }
+
+            .content > * {
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>STARTPAGE</h1>
+            <div>
+                <input id="textbox" type="text" onkeydown="if (event.keyCode == 13 || event.which == 13) { location='http://www.google.com/search?q=' + encodeURIComponent(document.getElementById('textbox').value);}" />
+            </div>
+        </div>
+    </body>
+    <script>
+        document.querySelector('#textbox').value = "";
+        document.querySelector('#textbox').focus();
+    </script>
+</html>
