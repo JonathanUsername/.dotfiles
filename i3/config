@@ -214,7 +214,8 @@ exec --no-startup-id "bash /home/jonathan/.config/i3/startpage.sh"
 # set $borderpurple #91429D
 
 # screenshot
-bindsym $mod+comma exec "scrot -s;"
+# bindsym $mod+comma exec "scrot -s;"
+bindsym --release $mod+Ctrl+Shift+4 exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
