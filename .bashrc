@@ -260,5 +260,5 @@ export PATH="$PATH:/usr/local/android-studio/bin"
 export ANDROID_HOME="/home/jonathan/Library/Android/sdk"
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-
+export FLOW_WHITELIST='node_modules,playerWidget'
 

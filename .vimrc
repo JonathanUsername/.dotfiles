@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'flowtype/vim-flow'
 " Plug 'python-mode/python-mode'
@@ -225,3 +225,5 @@ let g:ale_python_pylint_options = '--rcfile /home/jonathan/src/github.com/mixclo
 "Use locally installed flow - must be a better way!
 let local_flow = '/home/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin/flow'
 let g:flow#flowpath = local_flow
+" autoclose the quickfix window if no errors
+let g:flow#autoclose = 1
