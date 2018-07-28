@@ -117,6 +117,9 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -174,7 +177,7 @@ bindsym $mod+r mode "resize"
 gaps inner 25
 
 # rofi on super+space
-bindsym $mod+space exec "rofi -show run"
+bindsym $mod+space exec "rofi -show run -theme purple"
 
 # Remove title bars on windows
 new_window normal
@@ -195,9 +198,6 @@ exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 # polybar
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
-# Workspace layouts
-exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/jonathan/.i3/workspace-1.json'; firefox; gnome-terminal;"
-
 focus_follows_mouse no
 
 # Locking
@@ -205,13 +205,13 @@ exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 10 -locker ~/.config/i3/lock.sh
 
 # Background
-exec --no-startup-id feh --bg-scale https://i.imgur.com/nojr4NW.jpg
+exec --no-startup-id feh --bg-scale '/home/jonathan/Pictures/violet.jpg'
 
 # Startpage
-exec --no-startup-id "cd /home/jonathan/.config/i3/; ~/.config/i3/startpage.sh"
+exec --no-startup-id "bash /home/jonathan/.config/i3/startpage.sh"
 
 # colours?
-set $borderpurple #91429D
+# set $borderpurple #91429D
 
 # screenshot
 bindsym $mod+comma exec "scrot -s;"
@@ -221,3 +221,6 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Workspace layouts
+exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/jonathan/.i3/workspace-1.json'; firefox & gnome-terminal;"

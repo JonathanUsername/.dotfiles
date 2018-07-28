@@ -12,7 +12,9 @@ Plug 'rking/ag.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -85,6 +87,7 @@ let g:ackprg = 'ag --vimgrep'
 :map <Leader>s :w<kEnter>
 :map <Leader>q :q<kEnter>
 :map <Leader>v :e ~/.vimrc<kEnter>
+:map <Leader>d :FlowJumpToDef<kEnter>
 :map <Leader>td :TernDef<kEnter>
 :map <Leader>tr :TernRefs<kEnter>
 :map <Leader>tt :TernDefTab<kEnter>
@@ -154,21 +157,21 @@ noremap <Leader>T :tabnew<cr>"
 
 " SYNTASTIC
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_check_on_w = 1
-let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_checkers = ['eslint', 'flow']
-" let g:syntastic_javascript_flow_exe = 'node_modules/.bin/flow'
-let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
-let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_check_on_w = 1
+" let g:syntastic_javascript_checkers = ['eslint']
+" " let g:syntastic_javascript_checkers = ['eslint', 'flow']
+" " let g:syntastic_javascript_flow_exe = 'node_modules/.bin/flow'
+" let g:syntastic_javascript_eslint_exe = 'node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
+" let g:syntastic_python_checkers = ['pylint']
 
 " highlight link SyntasticErrorSign SignColumn
 " highlight link SyntasticWarningSign SignColumn
@@ -183,6 +186,7 @@ let g:python_host_prog = '/usr/local/bin/python2'
 let NERDTreeShowHidden=1
 
 " Using fzf instead of ctrl-p
+nnoremap <c-t> :History<CR>
 nnoremap <c-p> :Files<CR>
 
 " get ctrlp to remember 250 files
@@ -210,3 +214,14 @@ try
     set undofile
 catch
 endtry
+
+" Save clipboard registers even when leaving
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+let g:ale_linters = {
+\   'python': ['pylint'],
+\}
+let g:ale_python_pylint_options = '--rcfile /home/jonathan/src/github.com/mixcloud/mixcloud/website/tests/pylint/pylintrc' 
+"Use locally installed flow - must be a better way!
+let local_flow = '/home/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin/flow'
+let g:flow#flowpath = local_flow

@@ -254,3 +254,11 @@ eval "$(pyenv virtualenv-init -)"
 setxkbmap -option caps:escape
 source ~/src/github.com/jdxcode/gh/bash/gh.bash
 source ~/src/github.com/jdxcode/gh/completions/gh.bash
+export DJANGO_SETTINGS_MODULE=mixcloud.settings.dev.www
+alias android-studio="/usr/local/android-studio/bin/studio.sh"
+export PATH="$PATH:/usr/local/android-studio/bin"
+export ANDROID_HOME="/home/jonathan/Library/Android/sdk"
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+
