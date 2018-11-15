@@ -70,9 +70,9 @@ bindsym $mod+minus split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -173,7 +173,7 @@ bindsym $mod+space exec "rofi -show run -theme purple"
 # Remove title bars on windows
 new_window normal
 # hide_edge_borders vertical
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 0
 
 # volume controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
@@ -196,7 +196,8 @@ exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 10 -locker ~/.config/i3/lock.sh
 
 # Background
-exec --no-startup-id feh --bg-scale '/home/jonathan/Pictures/violet.jpg'
+# exec --no-startup-id feh --bg-scale '/home/jonathan/Pictures/violet.jpg'
+exec --no-startup-id feh --bg-scale '/home/jonathan/Pictures/bologna1.jpg'
 
 # Startpage
 exec --no-startup-id "bash /home/jonathan/.config/i3/startpage.sh"
@@ -215,4 +216,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Workspace layouts
-exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/jonathan/.i3/workspace-1.json'; firefox & gnome-terminal;"
+# exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/jonathan/.i3/workspace-1.json'; firefox & terminator;"
+
+# Compton
+exec --no-startup-id "compton --config ~/.config/i3/compton.conf"

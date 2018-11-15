@@ -1,1 +1,25 @@
-newconfig
+[global_config]
+  borderless = True
+  inactive_color_offset = 0.76
+  title_transmit_bg_color = "#75507b"
+[keybindings]
+  split_horiz = <Alt><Shift>D
+  split_vert = <Alt>D
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#3f3f3f"
+    cursor_color = "#dcdcdc"
+    font = DejaVu Sans Mono 10
+    foreground_color = "#dcdcdc"
+    palette = "#3f3f3f:#cc9393:#7f9f7f:#e3ceab:#dfaf8f:#cc9393:#8cd0d3:#dcdccc:#3f3f3f:#cc9393:#7f9f7f:#e3ceab:#dfaf8f:#cc9393:#8cd0d3:#dcdccc"
+    use_system_font = False

@@ -1,9 +1,34 @@
-.termite {
-    padding: 20px;
+VteTerminal,
+TerminalScreen,
+vte-terminal {
+    padding: 20px 20px 20px 20px;
+    -VteTerminal-inner-border: 10px 10px 10px 10px;
 }
 
-VteTerminal, vte-terminal,
-TerminalScreen {
-    padding: 10px 20px 10px 20px;
-    -VteTerminal-inner-border: 10px 10px 10px 10px;
+.terminator-terminal-window notebook tab {
+    background-color: #222;
+    padding: 0.2em;
+}
+
+.terminator-terminal-window notebook tab:active {
+    background-color: #000;
+}
+
+.terminator-terminal-window notebook tab .label {
+    color: #ddd;
+}
+
+.terminator-terminal-window notebook tab .active-page .label {
+    color: #76C802;
+    font-weight: 500;
+}
+
+.terminator-terminal-window notebook tab .button {
+    padding: 0;
+    background-color: transparent;
+    color: #ccc;
+}
+
+.terminator-terminal-window notebook tab .button:hover {
+  background-image: linear-gradient(to bottom, #000);
 }
