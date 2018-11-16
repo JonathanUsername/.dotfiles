@@ -168,12 +168,12 @@ bindsym $mod+r mode "resize"
 gaps inner 5
 
 # rofi on super+space
-bindsym $mod+space exec "rofi -show run -theme purple"
+bindsym $mod+space exec "rofi -show run -theme zenburn"
 
 # Remove title bars on windows
 new_window normal
 # hide_edge_borders vertical
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 
 # volume controls
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute

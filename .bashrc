@@ -250,7 +250,7 @@ export HISTSIZE=20000
 export PATH="/home/jonathan/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-# alias ls="ls --color"
+alias ls="ls --color=auto"
 setxkbmap -option caps:escape
 source ~/src/github.com/jdxcode/gh/bash/gh.bash
 source ~/src/github.com/jdxcode/gh/completions/gh.bash
