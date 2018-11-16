@@ -1,9 +1,4 @@
-VteTerminal,
-TerminalScreen,
-vte-terminal {
-    padding: 20px 20px 20px 20px;
-    -VteTerminal-inner-border: 10px 10px 10px 10px;
-}
+
 
 .terminator-terminal-window notebook tab {
     background-color: #222;
@@ -30,5 +25,15 @@ vte-terminal {
 }
 
 .terminator-terminal-window notebook tab .button:hover {
-  background-image: linear-gradient(to bottom, #000);
+    background-image: linear-gradient(to bottom, #000);
+}
+
+
+
+VteTerminal,
+TerminalScreen,
+vte-terminal,
+terminal-window {
+    padding: 10px 20px 10px 20px;
+    -VteTerminal-inner-border: 10px 10px 10px 10px;
 }

@@ -105,7 +105,7 @@ set undodir=~/.vim/tmp
 nmap ,n :NERDTreeFind<CR>
 
 " For light, low contrast theme:
-:let zenburn_on=0
+:let zenburn_on=1
 if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
