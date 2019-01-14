@@ -264,3 +264,4 @@ export FLOW_WHITELIST='node_modules,playerWidget'
 
 alias code='nvm use default; code'
 export XDG_CONFIG_HOME="$HOME/.config"
+export BROWSER='google-chrome-stable'
