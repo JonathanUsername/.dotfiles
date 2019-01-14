@@ -104,12 +104,17 @@ set undodir=~/.vim/tmp
 " open file in nerdtree
 nmap ,n :NERDTreeFind<CR>
 
-" For light, low contrast theme:
-:let zenburn_on=1
-if zenburn_on
+" Switch colour scheme
+:let jon_theme='apprentice'
+
+if jon_theme == 'zenburn'
     colors zenburn
     let g:airline_theme='zenburn'
-else
+elseif jon_theme == 'apprentice'
+    colors apprentice
+    let g:airline_theme='apprentice'
+    set termguicolors
+elseif jon_theme == 'violet'
     set t_Co=256
     highlight Normal ctermbg=NONE
     highlight nonText ctermbg=NONE
@@ -227,3 +232,10 @@ let local_flow = '/home/jonathan/src/github.com/mixcloud/mixcloud/website/js/nod
 let g:flow#flowpath = local_flow
 " autoclose the quickfix window if no errors
 let g:flow#autoclose = 1
+
+command! -bang -nargs=* Search
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
