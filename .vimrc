@@ -2,65 +2,43 @@ if &compatible
 	set nocompatible
 endif
 
-let onremote=$SSH_TTY
-if onremote == ''
-	set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-	set runtimepath+=~/testingstuffwoo
-	" clear search highlighting with esc
-	nnoremap <esc> :noh<return><esc>
-else
-	set runtimepath+=$SSHHOME/.sshrc.d/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
-	set runtimepath+=$SSHHOME/.sshrc.d/.vim
-endif
+call plug#begin('~/.vim/plugged')
 
-call dein#begin(expand('~/.vim/dein')) " plugins' root path
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {
-    \ 'build': {
-    \     'windows': 'tools\\update-dll-mingw',
-    \     'cygwin': 'make -f make_cygwin.mak',
-    \     'mac': 'make -f make_mac.mak',
-    \     'linux': 'make',
-    \     'unix': 'gmake',
-    \    },
-    \ })
+Plug 'racer-rust/vim-racer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'Shougo/unite.vim'
+Plug 'rking/ag.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
-call dein#add('racer-rust/vim-racer')
-call dein#add('junegunn/fzf.vim')
-call dein#add('rust-lang/rust.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('rking/ag.vim')
-" call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('scrooloose/nerdtree')
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('vim-syntastic/syntastic')
-call dein#add('tpope/vim-fugitive')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-rsi')
-" call dein#add('ternjs/tern_for_vim')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('flowtype/vim-flow')
-call dein#add('jparise/vim-graphql')
-" call dein#add('python-mode/python-mode')
-call dein#add('davidhalter/jedi-vim')
-call dein#add('jelera/vim-javascript-syntax')
-call dein#add('pangloss/vim-javascript')
-call dein#add('othree/javascript-libraries-syntax.vim')
-call dein#add('jiangmiao/auto-pairs')
-call dein#add('idanarye/vim-merginal')
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-commentary'
+" Plug 'ternjs/tern_for_vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'flowtype/vim-flow', { 'autoload': { 'filetypes': 'javascript' } }
+Plug 'python-mode/python-mode'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'idanarye/vim-merginal'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'dyng/ctrlsf.vim'
+Plug 'liuchengxu/space-vim-dark'
 
-" and a lot more plugins.....
-call dein#end()
+Plug 'tpope/vim-rsi'
+Plug 'jparise/vim-graphql'
+Plug 'davidhalter/jedi-vim'
 
-if dein#check_install()
-  :call dein#install()
-endif
+call plug#end()
 
-" :call dein#install()
-
-" execute pathogen#infect()
 
 " set background=dark
 set fileencoding=utf-8
@@ -80,6 +58,7 @@ set smarttab
 set shiftwidth=4
 set autoindent
 set smartindent
+set foldcolumn=0
 
 " for fancy arrows etc
 let g:airline_powerline_fonts = 1
@@ -182,15 +161,40 @@ if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
 else
+endif
+
+:let jon_theme='apprentice'
+
+if jon_theme == 'zenburn'
+    colors zenburn
+    let g:airline_theme='zenburn'
+	let g:zenburn_force_dark_Background = 1
+elseif jon_theme == 'apprentice'
+    colors apprentice
+    let g:airline_theme='apprentice'
+    set termguicolors
+elseif jon_theme == 'violet'
+    set t_Co=256
+    highlight Normal ctermbg=NONE
+    highlight nonText ctermbg=NONE
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    " :AirlineTheme solarized
+    " let g:airline_solarized_bg='dark'
+    let g:airline_theme='violet'
+
+    colorscheme space-vim-dark
+    hi Normal     ctermbg=NONE guibg=NONE
+    hi LineNr     ctermbg=NONE guibg=NONE
+    hi SignColumn ctermbg=NONE guibg=NONE
+    set termguicolors
+elseif jon_theme == 'solarized'
     set background=dark
     colorscheme solarized
     " :AirlineTheme solarized
     let g:airline_solarized_bg='dark'
     let g:airline_theme='understated'
 endif
-
-" For dark colours
-" colorscheme solarized
 
 " Map ctrl n to open filetree
 map <C-n> :NERDTreeToggle<CR>
@@ -205,33 +209,28 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " SYNTASTIC
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:flow#autoclose = 1
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 1
-let g:syntastic_check_on_w = 1
-" let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_javascript_checkers = ['eslint']
-
-" specific to opening in mixcloud/website!!
-let g:syntastic_javascript_eslint_exe = 'js/node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
-let g:syntastic_javascript_flow_exe = 'js/node_modules/.bin/flow'
+let g:used_javascript_libs = 'react'
 let g:javascript_plugin_flow = 1
-let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+" let g:syntastic_auto_loc_list = 0
+" " let g:syntastic_check_on_open = 1
+" " let g:syntastic_check_on_wq = 1
+" let g:syntastic_check_on_w = 1
+" " let g:syntastic_javascript_checkers = ['eslint', 'flow']
+" let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_sh_checkers = ['shellcheck', 'sh']
-let g:syntastic_sh_shellcheck_exe = 'shellcheck'
+" " specific to opening in mixcloud/website!!
+" let g:syntastic_javascript_eslint_exe = 'js/node_modules/.bin/eslint --config=.eslintrc.js --max-warnings=0'
+" let g:syntastic_javascript_flow_exe = 'js/node_modules/.bin/flow'
+" let g:syntastic_python_checkers = ['pylint']
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
+" let g:syntastic_sh_checkers = ['shellcheck', 'sh']
+" let g:syntastic_sh_shellcheck_exe = 'shellcheck'
 
 let g:used_javascript_libs = 'react'
 set rtp+=/usr/local/opt/fzf
@@ -292,3 +291,31 @@ if count(s:opam_available_tools,"ocp-indent") == 0
   source "/Users/jonathan/.opam/4.05.0/share/ocp-indent/vim/indent/ocaml.vim"
 endif
 " ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+
+
+try 
+    set undodir=~/.vim/undodir
+    set undofile
+catch
+endtry
+
+" Save clipboard registers even when leaving
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+let g:ale_linters = {
+\   'python': ['pylint'],
+\}
+let g:ale_python_pylint_options = '--rcfile /home/jonathan/src/github.com/mixcloud/mixcloud/website/tests/pylint/pylintrc' 
+"Use locally installed flow - must be a better way!
+let local_flow = '/Users/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin/flow'
+let g:flow#flowpath = local_flow
+" autoclose the quickfix window if no errors
+let g:flow#autoclose = 1
+
+command! -bang -nargs=* Search
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+
