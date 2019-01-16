@@ -177,7 +177,7 @@ set undofile
 set undodir=~/.vim/tmp
 
 " For light, low contrast theme:
-:let zenburn_on=0
+:let zenburn_on=1
 if zenburn_on
     colors zenburn
     let g:airline_theme='zenburn'
@@ -287,3 +287,8 @@ fun! OCaml_additional()
     nmap <buffer> <localleader>l :Locate<cr>
 endfun
 autocmd FileType ocaml call OCaml_additional()
+" ## added by OPAM user-setup for vim / ocp-indent ## 29a79bb13e4e1278e9d60f3492eb46b8 ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/jonathan/.opam/4.05.0/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line

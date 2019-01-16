@@ -11,13 +11,13 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
-new_ps1="$PS1"
-print_ps1() {
-	printf '\033[2J\033[H'
-	printf '%s' "${new_ps1@P}";
-}
-(/usr/local/bin/funkeh & wait; print_ps1)&
-disown
+# new_ps1="$PS1"
+# print_ps1() {
+# 	printf '\033[2J\033[H'
+# 	printf '%s' "${new_ps1@P}";
+# }
+# (/usr/local/bin/funkeh & wait; print_ps1)&
+# disown
 
 . /usr/local/etc/bash_completion
 
@@ -284,10 +284,18 @@ export MIXCLOUD_SETTINGS_REACT="mixcloud.settings.jon_react"
 export MIXCLOUD_SETTINGS_WWW="mixcloud.settings.jon"
 export MIXCLOUD_SETTINGS_API="mixcloud.settings.jon"
 export MIXCLOUD_SETTINGS_MOBILE="mixcloud.settings.jon_mobile"
-alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/activate"
+# alias mix="source /Users/jonathan/src/github.com/mixcloud/mixcloud/venv/bin/activate"
+alias mix="pyenv activate mixcloud"
 export PATH=$PATH:/Users/jonathan/src/github.com/mixcloud/mixcloud/website/node_modules/.bin
 eval `opam config env`
 
-export FLOW_WHITELIST='node_modules++playerWidget'
+export FLOW_WHITELIST='node_modules,playerWidget'
 export PATH=$(brew --prefix openvpn)/sbin:$PATH
 export PATH=$(brew --prefix mtr)/sbin:$PATH
+export DJANGO_SETTINGS_MODULE="$MIXCLOUD_SETTINGS_WWW"
+alias sonos="~/sonos.sh"
+
+
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
