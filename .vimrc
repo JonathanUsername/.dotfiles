@@ -9,6 +9,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-multiple-cursors'
@@ -46,7 +47,7 @@ set clipboard=unnamedplus
 set mouse=a
 
 " 4 spaces instead of tabs :(
-set tabstop=8
+set tabstop=4
 set softtabstop=0
 set expandtab
 set smarttab
@@ -135,9 +136,6 @@ endif
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 
-" Map ctrl n to open filetree
-map <C-n> :NERDTreeToggle<CR>
-
 " open new file from ctrl+p in pane
 let g:ctrlp_switch_buffer = 'et'
 " dont limit the files ctrl+p can search
@@ -201,9 +199,6 @@ let g:ctrlp_mruf_max = 250
 set backupdir=~/.vim/tmp,.
 set directory=~/.vim/tmp,.
 
-" Map ctrl n to open filetree
-map <C-n> :NERDTreeToggle<CR>
-
 set rtp+=/usr/local/opt/fzf
 
 " for fancy arrows etc
@@ -228,7 +223,8 @@ let g:ale_linters = {
 \}
 let g:ale_python_pylint_options = '--rcfile /home/jonathan/src/github.com/mixcloud/mixcloud/website/tests/pylint/pylintrc' 
 "Use locally installed flow - must be a better way!
-let local_flow = '/home/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin/flow'
+" let local_flow = '/home/jonathan/src/github.com/mixcloud/mixcloud/website/js/node_modules/.bin/flow'
+let local_flow = '/home/jonathan/src/github.com/facebook/relay/node_modules/.bin/flow'
 let g:flow#flowpath = local_flow
 " autoclose the quickfix window if no errors
 let g:flow#autoclose = 1
